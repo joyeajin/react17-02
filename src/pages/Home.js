@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const display = useSelector((state)=>state.video.listLayout);
+  const {listLayout} = useSelector((state)=>state.video);
   useEffect(()=>{
     dispatch(videoListLayout('grid'))
   },[])
@@ -16,7 +16,7 @@ const Home = () => {
     <>
       <SideMenu />
       <section className="main-content">
-        <VideoList display={display} />
+        {listLayout && <VideoList display={listLayout} /> }
       </section>
     </>
   );

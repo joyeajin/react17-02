@@ -15,6 +15,7 @@ const videoSlice = createSlice({
   initialState: {
     data: [],
     listLayout : 'grid',
+    loading : true,
   },
   reducers: {
     videoListLayout:(state,action)=>{
@@ -22,9 +23,17 @@ const videoSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    builder.addCase(getVideoList.pending, (state, action) => {
+      state.loading = true;
+    });
     builder.addCase(getVideoList.fulfilled, (state, action) => {
       console.log("액션페이로드", action.payload);
       state.data = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getVideoList.rejected, (state, action) => {
+      state.data = action.payload;
+      state.loading = true;
     });
   },
 });
