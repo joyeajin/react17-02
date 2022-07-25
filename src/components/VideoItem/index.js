@@ -14,7 +14,7 @@ const VideoItem = ({ item, value }) => {
   //value items
   const navigate = useNavigate();
   const goToWatch = () => {
-    navigate(`/watch?id=${id}`);
+    navigate(`/watch?id=${id}&channelId=${item.channelId}`);
   };
 
   return (
